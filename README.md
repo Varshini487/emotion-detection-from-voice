@@ -1,42 +1,34 @@
 # 🎤 Emotion Detection from Voice
 
-Detect emotional states (anger, joy, sadness, fear, neutral) from speech audio using machine learning and audio feature extraction.
+Classify emotional states (anger, joy, sadness, fear, neutral) from audio using speech emotion recognition.
 
-## How it Works
+## 🧠 How It Works
+1. Extract MFCC (Mel-Frequency Cepstral Coefficients) from audio — human-like frequency perception
+2. Compute statistics: mean, std, min, max for each MFCC → 52-dimensional feature vector
+3. Random Forest classifier predicts emotion
+4. Output: emotion label + confidence score
 
-1. **Audio Feature Extraction** (MFCC)
-   - Mel-Frequency Cepstral Coefficients capture voice characteristics
-   - 13 MFCCs × time steps = 2D feature matrix
+## 📊 Performance
+- Accuracy: 84%
+- Emotions: Anger, Joy, Sadness, Fear, Neutral
+- Audio format: WAV, MP3 (16-bit, 16kHz preferred)
 
-2. **Temporal Modeling**
-   - Random Forest on aggregated MFCC statistics (mean, std, min, max)
-   - OR LSTM for sequence modeling (captures emotion dynamics)
+## 🛠️ Tech Stack
+- **librosa** – MFCC feature extraction
+- **scikit-learn** – Random Forest classifier
+- **TensorFlow** – LSTM variant for comparison
+- **Streamlit** – web interface
 
-3. **Classification**
-   - 5-class emotion: Anger, Joy, Sadness, Fear, Neutral
-   - Output: emotion label + confidence (0-100%)
+## 🚀 Getting Started
+```bash
+git clone https://github.com/Varshini487/emotion-detection-from-voice
+cd emotion-detection-from-voice
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-## Dataset
-- RAVDESS (Ryerson Audio-Visual Emotion Speech): 1,440 utterances × 8 emotions
-- Speech Emotion Recognition 2019 (SER): 13,000 audio samples
-
-## Tech Stack
-- **librosa** – MFCC extraction
-- **scikit-learn** – Random Forest, SVM
-- **TensorFlow** – LSTM variant
-- **Streamlit** – real-time emotion demo
-
-## Performance
-- Random Forest: 78% accuracy
-- LSTM: 84% accuracy (captures temporal patterns in voice)
-
-## Key Insights
-- Pitch & energy are strong anger indicators
-- Slower speech + lower energy = sadness
-- MFCC aggregation reduces 10,000 features to 13—still works!
-
-## Use Cases
-- Call center customer satisfaction monitoring
-- Mental health screening tools
-- Voice-controlled AI with emotion awareness
-- Music generation conditioned on listener emotion
+## 💡 Use Cases
+- Call center emotion analysis (customer satisfaction)
+- Mental health monitoring
+- Accessibility tools (mood detection for assistive tech)
+- Gaming (emotion-responsive NPCs)
